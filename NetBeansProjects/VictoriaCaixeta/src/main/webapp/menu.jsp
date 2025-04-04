@@ -13,7 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>${pageContext.request.contextPath}</h1>
         <nav>
             <ul>
                 <li> <a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>

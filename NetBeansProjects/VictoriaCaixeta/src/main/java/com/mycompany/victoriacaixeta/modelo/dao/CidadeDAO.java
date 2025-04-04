@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.priscilasantos.modelo.dao;
+package com.mycompany.victoriacaixeta.modelo.dao;
 
-import com.mycompany.priscilasantos.modelo.dao.entidade.Cidade;
+import com.mycompany.victoriacaixeta.modelo.dao.entidade.Cidade;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class CidadeDAO extends GenericoDAO<Cidade>{
     public void salvar(Cidade objCidade){
-        String sql = "INSERT INTO CIDADE(NOME,UF)";
+        String sql = "INSERT INTO CIDADE(NOME,UF) values (?,?)";
         save(sql,objCidade.getNomeCidade(), objCidade.getUfCidade());
     }
     

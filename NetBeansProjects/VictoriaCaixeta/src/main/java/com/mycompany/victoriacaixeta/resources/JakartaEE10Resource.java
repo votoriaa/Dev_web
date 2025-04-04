@@ -1,4 +1,4 @@
-package com.mycompany.priscilasantos.resources;
+package com.mycompany.victoriacaixeta.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
