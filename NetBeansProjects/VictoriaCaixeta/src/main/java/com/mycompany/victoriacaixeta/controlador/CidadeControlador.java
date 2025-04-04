@@ -7,12 +7,14 @@ package com.mycompany.victoriacaixeta.controlador;
 import com.mycompany.victoriacaixeta.modelo.dao.CidadeDAO;
 import com.mycompany.victoriacaixeta.modelo.dao.entidade.Cidade;
 import com.mycompany.victoriacaixeta.servico.WebConstante;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -58,12 +60,21 @@ public class CidadeControlador extends HttpServlet{
         
     }
     
-    protected void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         objCidade.setNomeCidade(nomeCidade);
         objCidade.setUfCidade(ufCidade);
         objCidadeDao.salvar(objCidade);
+        encaminharParaPagina(request, response);
+       
+    }
+    
+    private void encaminharParaPagina(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+        List<Cidade> listaCidade = objCidadeDao.buscarTodasCidades();
+        request.setAttribute("listaCidade",listaCidade);
+        RequestDispatcher encaminhar = request.getRequestDispatcher("/CadastroCidade.jsp");
+        encaminhar.forward(request, response);
         
     }
 }
