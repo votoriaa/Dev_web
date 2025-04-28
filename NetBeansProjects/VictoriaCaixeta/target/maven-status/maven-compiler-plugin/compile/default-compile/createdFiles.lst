@@ -1,0 +1,11 @@
+com\mycompany\victoriacaixeta\resources\JakartaEE10Resource.class
+com\mycompany\victoriacaixeta\modelo\dao\ConnectionFactory.class
+com\mycompany\victoriacaixeta\modelo\dao\CidadeDAO$CidadeRowMapper.class
+com\mycompany\victoriacaixeta\modelo\dao\RowMapper.class
+com\mycompany\victoriacaixeta\servico\ConfigListener.class
+com\mycompany\victoriacaixeta\controlador\CidadeControlador.class
+com\mycompany\victoriacaixeta\modelo\dao\CidadeDAO.class
+com\mycompany\victoriacaixeta\modelo\dao\entidade\Cidade.class
+com\mycompany\victoriacaixeta\modelo\dao\GenericoDAO.class
+com\mycompany\victoriacaixeta\JakartaRestConfiguration.class
+com\mycompany\victoriacaixeta\servico\WebConstante.class
