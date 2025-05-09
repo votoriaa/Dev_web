@@ -10,19 +10,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Cidade</title>
+        <title>Cadastro Marca</title>
     </head>
     <body>
-        <h1>Cadastro Cidade</h1>
+        <h1>Cadastro Marca</h1>
         <form id="cadastroForm" name="cadastro" 
-              method="get" action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
+              method="get" action="${pageContext.request.contextPath}${URL_BASE}/MarcaControlador">
              <input type="hidden" name="opcao" value="${opcao}">
-             <input type="hidden" name="codigoCidade" value="${codigoCidade}">
-            <p><label>Cidade:</label><input type="text" required="" name="nomeCidade" value="${nomeCidade}" size="40"></p>
-            <p><label>UF:</label><input type="text" required="" name="ufCidade" value="${ufCidade}" size="5"></p>
+             <input type="hidden" name="codMarca" value="${codMarca}">
+            <p><label>Nome da marca:</label><input type="text" required="" name="nome" value="${nome}" size="40"></p>
+            <p><label>Observações:</label><input type="text" required="" name="observacoes" value="${observacoes}" size="20"></p>
           <input type="submit" value="Salvar" name="btnSalvar" style="float: left; margin-right: 3px" >     
         </form>
-          <form id="cadastroForm" name="cadastro" method="get" action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
+          <form id="cadastroForm" name="cadastro" method="get" action="${pageContext.request.contextPath}${URL_BASE}/MarcaControlador">
             <input type="submit" value="Cancelar" name="btnCancelar">
              <input type="hidden" name="opcao" value="cancelar">
             
@@ -35,22 +35,22 @@
             <table border = "1">
                 <tr>
                     <td>CÓDIGO</TD>
-                    <td>NOME</td>
-                    <td>UF</td>
+                    <td>NOME MARCA</td>
+                    <td>OBSERVACOES</td>
                     <td>ALTERAR</td>
                     <td>EXCLUIR</td>
                 </tr>
                 
-                <c:forEach var="cidade" items="${listaCidade}">
+                <c:forEach var="marca" items="${listaCidade}">
                     <tr>
-                        <td> ${cidade.codigoCidade}</td>
-                        <td> ${cidade.nomeCidade}</td>
-                        <td> ${cidade.ufCidade}</td> 
+                        <td> ${marca.codMarca}</td>
+                        <td> ${marca.nome}</td>
+                        <td> ${marca.obervacoes}</td> 
                         <td><form id="cadastroForm" name="cadastro" method="get"
-                                  action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
-                                <input type="hidden" name="codigoCidade" value="${cidade.codigoCidade}">
-                                <input type="hidden" name="nomeCidade" value="${cidade.nomeCidade}">
-                                <input type="hidden" name="ufCidade" value="${cidade.ufCidade}">
+                                  action="${pageContext.request.contextPath}${URL_BASE}/MarcaControlador">
+                                <input type="hidden" name="codMarca" value="${marca.codMarca}">
+                                <input type="hidden" name="nome" value="${marca.nome}">
+                                <input type="hidden" name="obervacoes" value="${marca.obervacoes}">
                                 <input type="hidden" name="opcao" value="editar">
                                 <button type="submit">Editar</button>
                                 <input type="hidden" name="opcao" value="excluir">
@@ -60,9 +60,9 @@
                            
                          <td><form id="cadastroForm" name="cadastro" method="get"
                                   action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
-                                <input type="hidden" name="codigoCidade" value="${cidade.codigoCidade}">
-                                <input type="hidden" name="nomeCidade" value="${cidade.nomeCidade}">
-                                <input type="hidden" name="ufCidade" value="${cidade.ufCidade}">
+                                <input type="hidden" name="codMarca" value="${marca.codMarca}">
+                                <input type="hidden" name="nome" value="${marca.nome}">
+                                <input type="hidden" name="obervacoes" value="${marca.obervacoes}">
                                 <input type="hidden" name="opcao" value="excluir">
                                 <button type="submit">excluir</button>
                                 <input type="hidden" name="opcao" value="excluir">

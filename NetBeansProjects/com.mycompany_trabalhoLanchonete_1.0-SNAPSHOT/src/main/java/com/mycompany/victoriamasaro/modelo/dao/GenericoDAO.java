@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.victoriacaixeta.modelo.dao;
+package com.mycompany.victoriamasaro.modelo.dao;
 
 /*
 A classe GenericoDAO<T> é uma classe de Acesso a Dados (Data Access Object, DAO) genérica projetada para 

@@ -1,4 +1,4 @@
-package com.mycompany.victoriacaixeta;
+package com.mycompany.victoriamasaro;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;

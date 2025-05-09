@@ -16,8 +16,9 @@
         <nav>
             <ul>
                 <li> <a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
-                <li> <a href="${pageContext.request.contextPath}/CidadeControlador?opcao=cancelar">CIDADE</a></li>
-                <li> <a href="${pageContext.request.contextPath}/FuncionarioControlador?opcao=cancelar">FUNCIONARIO</a></li>
+                <li> <a href="${pageContext.request.contextPath}/CargoControlador?opcao=cancelar">CARGO</a></li>
+                <li> <a href="${pageContext.request.contextPath}/MarcaControlador?opcao=cancelar">MARCA</a></li>
+                <li> <a href="${pageContext.request.contextPath}/MarcaControlador?opcao=cancelar">CATEGORIA</a></li>
                 <li> <a href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
                 <li> <a href="${pageContext.request.contextPath}/logout.jsp">LOGOUT</a></li>
             </ul>

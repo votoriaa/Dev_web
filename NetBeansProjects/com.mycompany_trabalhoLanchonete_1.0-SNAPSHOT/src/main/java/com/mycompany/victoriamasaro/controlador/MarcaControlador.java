@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.victoriacaixeta.controlador;
+package com.mycompany.victoriamasaro.controlador;
 
-import com.mycompany.victoriacaixeta.modelo.dao.CidadeDAO;
-import com.mycompany.victoriacaixeta.modelo.dao.entidade.Cidade;
-import com.mycompany.victoriacaixeta.servico.WebConstante;
+
+import com.mycompany.victoriamasaro.modelo.dao.entidade.Marca;
+import com.mycompany.victoriamasaro.modelo.dao.MarcaDao;
+import com.mycompany.victoriamasaro.servico.WebConstante;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,22 +17,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
-/**
- *
- * @author 12172700606
- */
 @WebServlet(WebConstante.BASE_PATH+"/CidadeControlador")
-public class CidadeControlador extends HttpServlet{
+public class MarcaControlador extends HttpServlet{
 
-    private Cidade objCidade;
-    private CidadeDAO objCidadeDao;
-    String nomeCidade = "", ufCidade="", codigoCidade="";
+    private Marca objMarca;
+    private MarcaDao objMarcaDao;
+    String nome = "", observacoes="", codMarca="";
+    
+    
     
     @Override
     public void init() throws ServletException {
-        objCidadeDao = new CidadeDAO();
-        objCidade = new Cidade();
+        objMarcaDao = new MarcaDao();
+        objMarca = new Marca();
     }
 
     @Override
@@ -41,9 +39,9 @@ public class CidadeControlador extends HttpServlet{
             if(opcao==null||opcao.isEmpty()){
                 opcao="cadastrar";
             }
-            codigoCidade = request.getParameter("codigoCidade");
-            nomeCidade = request.getParameter("nomeCidade");
-            ufCidade = request.getParameter("ufCidade");
+            codMarca = request.getParameter("codMarca");
+            nome = request.getParameter("nome");
+            observacoes = request.getParameter("observacoes");
             switch(opcao){
                 case "cadastrar":
                     cadastrar(request,response);
@@ -76,64 +74,64 @@ public class CidadeControlador extends HttpServlet{
     
     private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        objCidade.setNomeCidade(nomeCidade);
-        objCidade.setUfCidade(ufCidade);
-        objCidadeDao.salvar(objCidade);
+        objMarca.setNome(nome);
+        objMarca.setObservacoes(observacoes);
+        objMarcaDao.salvar(objMarca);
         encaminharParaPagina(request, response);
        
     }
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        request.setAttribute("codigoCidade", codigoCidade);
-        request.setAttribute("nomeCidade", nomeCidade);
-        request.setAttribute("ufCidade", ufCidade);
+        request.setAttribute("codMarca", codMarca);
+        request.setAttribute("nome", nome);
+        request.setAttribute("observacoes", observacoes);
         request.setAttribute("mensagem", "Edite os dados e clique em salvar");
         request.setAttribute("opcao", "confirmarEditar");
         encaminharParaPagina(request, response);
     }
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        objCidade.setCodigoCidade(Integer.valueOf(codigoCidade));
-        objCidade.setNomeCidade(nomeCidade);
-        objCidade.setUfCidade(ufCidade);
-        objCidadeDao.alterar(objCidade);
+        objMarca.setCodMarca(Integer.valueOf(codMarca));
+        objMarca.setNome(nome);
+        objMarca.setObservacoes(observacoes);
+        objMarcaDao.alterar(objMarca);
         encaminharParaPagina(request, response);
        
     }
     
     private void excluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        request.setAttribute("codigoCidade", codigoCidade);
-        request.setAttribute("nomeCidade", nomeCidade);
-        request.setAttribute("ufCidade", ufCidade);
+        request.setAttribute("CodMarca", codMarca);
+        request.setAttribute("nome", nome);
+        request.setAttribute("observacoes", observacoes);
         request.setAttribute("mensagem", "Exclua os dados e clique em salvar");
         request.setAttribute("opcao", "confirmarExcluir");
         encaminharParaPagina(request, response);
     }
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        objCidade.setCodigoCidade(Integer.valueOf(codigoCidade));
-        objCidade.setNomeCidade(nomeCidade);
-        objCidade.setUfCidade(ufCidade);
-        objCidadeDao.excluir(objCidade);
+        objMarca.setCodMarca(Integer.valueOf(codMarca));
+        objMarca.setNome(nome);
+        objMarca.setObservacoes(observacoes);
+        objMarcaDao.excluir(objMarca);
         encaminharParaPagina(request, response);
     }
     
     
     private void encaminharParaPagina(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        List<Cidade> listaCidade = objCidadeDao.buscarTodasCidades();
+        List<Marca> listaCidade = objMarcaDao.buscarTodasCidades();
         request.setAttribute("listaCidade",listaCidade);
-        RequestDispatcher encaminhar = request.getRequestDispatcher("/CadastroCidade.jsp");
+        RequestDispatcher encaminhar = request.getRequestDispatcher("/CadastroMarca.jsp");
         encaminhar.forward(request, response);
         
     }
     
     protected void cancelar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("codigoCidade", "0");
-        request.setAttribute("nomeCidade", "");
-        request.setAttribute("ufCidade", "");
+        request.setAttribute("codMarca", "0");
+        request.setAttribute("nome", "");
+        request.setAttribute("observacoes", "");
         request.setAttribute("opcao", "cadastrar");
         encaminharParaPagina(request, response);
         

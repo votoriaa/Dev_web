@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.victoriacaixeta.modelo.dao;
+package com.mycompany.victoriamasaro.modelo.dao;
 
 //import com.mysql.cj.jdbc.PreparedStatementWrapper;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
     
-   private static final String DB_URL="jdbc:mysql://localhost:3307/bdestudog?useSSL=false"; 
+   private static final String DB_URL="jdbc:mysql://localhost:3307/lanchonete_2d_2024?useSSL=false"; 
    private static final String DB_DRIVER="com.mysql.cj.jdbc.Driver"; 
    private static final String DB_USER="root"; 
    private static final String DB_PASSWORD="1234"; 

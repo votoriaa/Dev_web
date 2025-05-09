@@ -10,19 +10,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Cidade</title>
+        <title>Cadastro Cargo</title>
     </head>
     <body>
-        <h1>Cadastro Cidade</h1>
+        <h1>Cadastro Cargo</h1>
         <form id="cadastroForm" name="cadastro" 
-              method="get" action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
+              method="get" action="${pageContext.request.contextPath}${URL_BASE}/CargoControlador">
              <input type="hidden" name="opcao" value="${opcao}">
-             <input type="hidden" name="codigoCidade" value="${codigoCidade}">
-            <p><label>Cidade:</label><input type="text" required="" name="nomeCidade" value="${nomeCidade}" size="40"></p>
-            <p><label>UF:</label><input type="text" required="" name="ufCidade" value="${ufCidade}" size="5"></p>
+             <input type="hidden" name="codCargo" value="${codCargo}">
+            <p><label>Nome do cargo:</label><input type="text" required="" name="nome" value="${nome}" size="40"></p>
+            <p><label>Salario inicial:</label><input type="text" required="" name="salarioInicial" value="${salarioInicial}" size="20"></p>
           <input type="submit" value="Salvar" name="btnSalvar" style="float: left; margin-right: 3px" >     
         </form>
-          <form id="cadastroForm" name="cadastro" method="get" action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
+          <form id="cadastroForm" name="cadastro" method="get" action="${pageContext.request.contextPath}${URL_BASE}/CargoControlador">
             <input type="submit" value="Cancelar" name="btnCancelar">
              <input type="hidden" name="opcao" value="cancelar">
             
@@ -35,22 +35,22 @@
             <table border = "1">
                 <tr>
                     <td>CÓDIGO</TD>
-                    <td>NOME</td>
-                    <td>UF</td>
+                    <td>NOME CARGO</td>
+                    <td>SALARIO INICIAL</td>
                     <td>ALTERAR</td>
                     <td>EXCLUIR</td>
                 </tr>
                 
-                <c:forEach var="cidade" items="${listaCidade}">
+                <c:forEach var="cargo" items="${listaCidade}">
                     <tr>
-                        <td> ${cidade.codigoCidade}</td>
-                        <td> ${cidade.nomeCidade}</td>
-                        <td> ${cidade.ufCidade}</td> 
+                        <td> ${cargo.codCargo}</td>
+                        <td> ${cargo.nome}</td>
+                        <td> ${cargo.salarioInicial}</td> 
                         <td><form id="cadastroForm" name="cadastro" method="get"
-                                  action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
-                                <input type="hidden" name="codigoCidade" value="${cidade.codigoCidade}">
-                                <input type="hidden" name="nomeCidade" value="${cidade.nomeCidade}">
-                                <input type="hidden" name="ufCidade" value="${cidade.ufCidade}">
+                                  action="${pageContext.request.contextPath}${URL_BASE}/CargoControlador">
+                                <input type="hidden" name="codCargo" value="${cargo.codCargo}">
+                                <input type="hidden" name="nome" value="${cargo.nome}">
+                                <input type="hidden" name="salarioInicial" value="${cargo.codCargo}">
                                 <input type="hidden" name="opcao" value="editar">
                                 <button type="submit">Editar</button>
                                 <input type="hidden" name="opcao" value="excluir">
@@ -59,10 +59,10 @@
                
                            
                          <td><form id="cadastroForm" name="cadastro" method="get"
-                                  action="${pageContext.request.contextPath}${URL_BASE}/CidadeControlador">
-                                <input type="hidden" name="codigoCidade" value="${cidade.codigoCidade}">
-                                <input type="hidden" name="nomeCidade" value="${cidade.nomeCidade}">
-                                <input type="hidden" name="ufCidade" value="${cidade.ufCidade}">
+                                  action="${pageContext.request.contextPath}${URL_BASE}/CargoControlador">
+                                <input type="hidden" name="codCargo" value="${cargo.codCargo}">
+                                <input type="hidden" name="nome" value="${cargo.nome}">
+                                <input type="hidden" name="salarioInicial" value="${cargo.salarioInicial}">
                                 <input type="hidden" name="opcao" value="excluir">
                                 <button type="submit">excluir</button>
                                 <input type="hidden" name="opcao" value="excluir">
