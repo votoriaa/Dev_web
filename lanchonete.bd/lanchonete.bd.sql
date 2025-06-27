@@ -29,9 +29,17 @@ CREATE TABLE IF NOT EXISTS `auditoria` (
   `dataHora` datetime NOT NULL,
   `usuario` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`codAuditoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Registrar as ações importantes do sistema. Exemplos: venda de produtos, inserção de marcas, atualização de preços, etc.';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Registrar as ações importantes do sistema. Exemplos: venda de produtos, inserção de marcas, atualização de preços, etc.';
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.auditoria: ~7 rows (aproximadamente)
+INSERT INTO `auditoria` (`codAuditoria`, `acao`, `tabela`, `dataHora`, `usuario`) VALUES
+	(8, 'Marca cadastrada: AAAA', 'marca', '2025-05-16 10:24:20', 'root@localhost'),
+	(9, 'Marca cadastrada: SAA', 'marca', '2025-05-16 10:26:05', 'root@localhost'),
+	(10, 'Marca cadastrada: TESTE', 'marca', '2025-05-16 10:28:17', 'root@localhost'),
+	(11, 'Marca cadastrada: FAXINEIRA', 'marca', '2025-05-16 10:31:29', 'root@localhost'),
+	(12, 'Marca cadastrada: FAXINEIRA', 'marca', '2025-05-16 10:33:48', 'root@localhost'),
+	(13, 'Marca cadastrada: EXEMPLO1', 'marca', '2025-05-22 08:22:38', 'root@localhost'),
+	(14, 'Marca cadastrada: 1', 'marca', '2025-05-23 10:37:19', 'root@localhost');
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.cargo
 DROP TABLE IF EXISTS `cargo`;
@@ -40,9 +48,13 @@ CREATE TABLE IF NOT EXISTS `cargo` (
   `nome` varchar(300) NOT NULL,
   `salarioInicial` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`codCargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.cargo: ~3 rows (aproximadamente)
+INSERT INTO `cargo` (`codCargo`, `nome`, `salarioInicial`) VALUES
+	(7, 'Faxineira', 2000.00),
+	(8, 'Nome', 2000.00),
+	(12, 'Tiago', 2000.00);
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.categoria
 DROP TABLE IF EXISTS `categoria`;
@@ -50,9 +62,13 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `codCategoria` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`codCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.categoria: ~4 rows (aproximadamente)
+INSERT INTO `categoria` (`codCategoria`, `nome`) VALUES
+	(7, 'Faxineira'),
+	(8, 'Faxineira'),
+	(9, 'asas');
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.cliente
 DROP TABLE IF EXISTS `cliente`;
@@ -61,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `nome` varchar(150) NOT NULL,
   `cpf` varchar(20) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
-  `dataNascimento` date DEFAULT NULL,
+  `dataNascimento` varchar(50) DEFAULT NULL,
   `telefone` varchar(50) DEFAULT NULL,
   `endereco` varchar(150) DEFAULT NULL,
   `bairro` varchar(80) DEFAULT NULL,
@@ -69,9 +85,11 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `cep` varchar(15) DEFAULT NULL,
   `uf` char(2) DEFAULT NULL,
   PRIMARY KEY (`codCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.cliente: ~1 rows (aproximadamente)
+INSERT INTO `cliente` (`codCliente`, `nome`, `cpf`, `email`, `dataNascimento`, `telefone`, `endereco`, `bairro`, `cidade`, `cep`, `uf`) VALUES
+	(8, 'Tiago', '12968550502', 'tiago.masaro@alunos.ifsuldeminas.edu.br', '2009-08-02', '997751404', 'rua olimpio Pereira', 'centro', 'Machado', NULL, '53');
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.entregas
 DROP TABLE IF EXISTS `entregas`;
@@ -85,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `entregas` (
   CONSTRAINT `cliente` FOREIGN KEY (`cliente_codCliente`) REFERENCES `cliente` (`codCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.entregas: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.fornecedor
 DROP TABLE IF EXISTS `fornecedor`;
@@ -98,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   CONSTRAINT `itens` FOREIGN KEY (`itensvenda_codItemVenda`) REFERENCES `itensvenda` (`codItemVenda`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.fornecedor: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.funcionario
 DROP TABLE IF EXISTS `funcionario`;
@@ -116,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   CONSTRAINT `fk_funcionario_cargo1` FOREIGN KEY (`cargo_codCargo`) REFERENCES `cargo` (`codCargo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.funcionario: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.itensvenda
 DROP TABLE IF EXISTS `itensvenda`;
@@ -132,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `itensvenda` (
   CONSTRAINT `fk_produto_has_venda_venda1` FOREIGN KEY (`venda_codVenda`) REFERENCES `venda` (`codVenda`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.itensvenda: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.marca
 DROP TABLE IF EXISTS `marca`;
@@ -141,9 +159,13 @@ CREATE TABLE IF NOT EXISTS `marca` (
   `nome` varchar(50) NOT NULL,
   `observacoes` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`codMarca`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.marca: ~3 rows (aproximadamente)
+INSERT INTO `marca` (`codMarca`, `nome`, `observacoes`) VALUES
+	(14, 'aaa', 'teste'),
+	(15, 'FAXINEIRA', 'tiago'),
+	(16, 'FAXINEIRA', 'sssss');
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.produto
 DROP TABLE IF EXISTS `produto`;
@@ -163,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   CONSTRAINT `fk_produto_marca` FOREIGN KEY (`marca_codMarca`) REFERENCES `marca` (`codMarca`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.produto: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela lanchonete_2d_2024.venda
 DROP TABLE IF EXISTS `venda`;
@@ -180,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `venda` (
   CONSTRAINT `fk_venda_funcionario1` FOREIGN KEY (`funcionario_codFuncionario`) REFERENCES `funcionario` (`codFuncionario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela lanchonete_2d_2024.venda: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para view lanchonete_2d_2024.vi_anoscontrato
 DROP VIEW IF EXISTS `vi_anoscontrato`;
