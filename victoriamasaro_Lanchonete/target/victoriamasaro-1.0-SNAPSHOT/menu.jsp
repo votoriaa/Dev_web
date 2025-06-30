@@ -139,6 +139,7 @@
         <a href="${pageContext.request.contextPath}${URL_BASE}/ProdutoControlador?opcao=cancelar" data-icon="🍔">Produto</a>
         <a href="${pageContext.request.contextPath}${URL_BASE}/VendaControlador?opcao=cancelar" data-icon="🛒">Venda</a>
         <a href="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador?opcao=cancelar" data-icon="🍳">Funcionario</a>
+        <a href="${pageContext.request.contextPath}${URL_BASE}/ItensVendaControlador?opcao=cancelar" data-icon="🍳">Itens Vendidos</a>
     </nav>
 </div>
 <c:if test="${empty ocultarBoasVindas}">

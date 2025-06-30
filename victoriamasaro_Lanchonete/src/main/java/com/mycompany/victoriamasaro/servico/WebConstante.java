@@ -10,4 +10,5 @@ package com.mycompany.victoriamasaro.servico;
  */
 public class WebConstante {
     public static final String BASE_PATH = "/com/mycompany/victoriamasaro/controlador";
+    public static String PAGINA_CADASTRO_FUNCIONARIO;
 }

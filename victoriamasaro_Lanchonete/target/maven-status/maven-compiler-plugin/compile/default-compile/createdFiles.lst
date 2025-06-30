@@ -18,11 +18,14 @@ com\mycompany\victoriamasaro\modelo\dao\entidade\Marca.class
 com\mycompany\victoriamasaro\modelo\dao\GenericoDAO.class
 com\mycompany\victoriamasaro\modelo\dao\entidade\Categoria.class
 com\mycompany\victoriamasaro\controlador\MarcaControlador.class
+com\mycompany\victoriamasaro\modelo\dao\ItensVendaDao.class
 com\mycompany\victoriamasaro\controlador\ClienteControlador.class
 com\mycompany\victoriamasaro\modelo\dao\ProdutoDao$ProdutoRowMapper.class
 com\mycompany\victoriamasaro\modelo\dao\FuncionarioDao$FuncionarioRowMapper.class
+com\mycompany\victoriamasaro\modelo\dao\ItensVendaDao$ItensVendaRowMapper.class
 com\mycompany\victoriamasaro\modelo\dao\RowMapper.class
 com\mycompany\victoriamasaro\controlador\ProdutoControlador.class
+com\mycompany\victoriamasaro\controlador\ItensVendaControlador.class
 com\mycompany\victoriamasaro\modelo\dao\entidade\ItensVenda.class
 com\mycompany\victoriamasaro\modelo\dao\CategoriaDao$CategoriaRowMapper.class
 com\mycompany\victoriamasaro\resources\JakartaEE10Resource.class

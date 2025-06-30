@@ -11,7 +11,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -80,7 +79,7 @@ public class FuncionarioControlador extends HttpServlet {
     }
 
     private void cadastrar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Funcionario f = criarFuncionarioAPartirDoFormulario(req);
+        Funcionario f = criarFuncionarioDoFormulario(req);
         funcionarioDao.salvar(f);
         req.setAttribute("mensagem", "Cadastro realizado com sucesso.");
         listarFuncionarios(req, resp);
@@ -95,7 +94,7 @@ public class FuncionarioControlador extends HttpServlet {
     }
 
     private void confirmarEditar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Funcionario f = criarFuncionarioAPartirDoFormulario(req);
+        Funcionario f = criarFuncionarioDoFormulario(req);
         f.setCodFuncionario(parseIntSafe(req.getParameter("codigoFuncionario")));
         funcionarioDao.alterar(f);
         req.setAttribute("mensagem", "Alteração realizada com sucesso.");
@@ -123,20 +122,20 @@ public class FuncionarioControlador extends HttpServlet {
         listarFuncionarios(req, resp);
     }
 
-    // --- MÉTODOS AUXILIARES ---
+    // Auxiliares
 
-    private Funcionario criarFuncionarioAPartirDoFormulario(HttpServletRequest req) {
+    private Funcionario criarFuncionarioDoFormulario(HttpServletRequest req) {
         Funcionario f = new Funcionario();
         f.setNome(req.getParameter("nomeFuncionario"));
-        f.setCarTrab(req.getParameter("carTrab"));
-        f.setCpf(req.getParameter("cpf"));
-        f.setEmail(req.getParameter("email"));
-        f.setSalarioAtual(parseDoubleSafe(req.getParameter("salarioAtual")));
-        f.setDataAdmissao(parseDateSafe(req.getParameter("dataAdmissao")));
+        f.setCarTrab(req.getParameter("carTrabFuncionario"));
+        f.setCpf(req.getParameter("cpfFuncionario"));
+        f.setEmail(req.getParameter("emailFuncionario"));
+        f.setSalarioAtual(parseDoubleSafe(req.getParameter("salarioAtualFuncionario")));
+        f.setDataAdmissao(Date.valueOf(req.getParameter("dataAdmissaoFuncionario")));
 
-        Cargo c = new Cargo();
-        c.setCodCargo(parseIntSafe(req.getParameter("codCargo")));
-        f.setCodCargo(c);
+        Cargo cargo = new Cargo();
+        cargo.setCodCargo(parseIntSafe(req.getParameter("codCargo")));
+        f.setObjCargo(cargo);
 
         return f;
     }
@@ -144,22 +143,22 @@ public class FuncionarioControlador extends HttpServlet {
     private void carregarCampos(HttpServletRequest req) {
         req.setAttribute("codigoFuncionario", req.getParameter("codigoFuncionario"));
         req.setAttribute("nomeFuncionario", req.getParameter("nomeFuncionario"));
-        req.setAttribute("carTrab", req.getParameter("carTrab"));
-        req.setAttribute("cpf", req.getParameter("cpf"));
-        req.setAttribute("email", req.getParameter("email"));
-        req.setAttribute("salarioAtual", req.getParameter("salarioAtual"));
-        req.setAttribute("dataAdmissao", req.getParameter("dataAdmissao"));
+        req.setAttribute("carTrabFuncionario", req.getParameter("carTrabFuncionario"));
+        req.setAttribute("cpfFuncionario", req.getParameter("cpfFuncionario"));
+        req.setAttribute("emailFuncionario", req.getParameter("emailFuncionario"));
+        req.setAttribute("salarioAtualFuncionario", req.getParameter("salarioAtualFuncionario"));
+        req.setAttribute("dataAdmissaoFuncionario", req.getParameter("dataAdmissaoFuncionario"));
         req.setAttribute("codCargo", req.getParameter("codCargo"));
     }
 
     private void limparCampos(HttpServletRequest req) {
         req.setAttribute("codigoFuncionario", "");
         req.setAttribute("nomeFuncionario", "");
-        req.setAttribute("carTrab", "");
-        req.setAttribute("cpf", "");
-        req.setAttribute("email", "");
-        req.setAttribute("salarioAtual", "");
-        req.setAttribute("dataAdmissao", "");
+        req.setAttribute("carTrabFuncionario", "");
+        req.setAttribute("cpfFuncionario", "");
+        req.setAttribute("emailFuncionario", "");
+        req.setAttribute("salarioAtualFuncionario", "");
+        req.setAttribute("dataAdmissaoFuncionario", "");
         req.setAttribute("codCargo", "");
     }
 
@@ -188,15 +187,6 @@ public class FuncionarioControlador extends HttpServlet {
             return Double.parseDouble(valor);
         } catch (Exception e) {
             return 0.0;
-        }
-    }
-
-    private Date parseDateSafe(String valor) {
-        try {
-            if (valor == null || valor.trim().isEmpty()) return null;
-            return Date.valueOf(valor);  // espera formato yyyy-MM-dd
-        } catch (Exception e) {
-            return null;
         }
     }
 }

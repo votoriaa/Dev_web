@@ -6,10 +6,6 @@ package com.mycompany.victoriamasaro.modelo.dao.entidade;
 
 import java.sql.Date;
 
-/**
- *
- * @author victo
- */
 public class Funcionario {
     
     private Integer codFuncionario;
@@ -17,7 +13,7 @@ public class Funcionario {
     private double salarioAtual;
    private Date dataAdmissao;
    
-   private Cargo codCargo;
+   private Cargo objCargo;
 
     public Integer getCodFuncionario() {
         return codFuncionario;
@@ -75,14 +71,14 @@ public class Funcionario {
         this.dataAdmissao = dataAdmissao;
     }
 
-    public Cargo getCodCargo() {
-        return codCargo;
+    public Cargo getObjCargo() {
+        return objCargo;
     }
 
-    public void setCodCargo(Cargo codCargo) {
-        this.codCargo = codCargo;
+    public void setObjCargo(Cargo objCargo) {
+        this.objCargo = objCargo;
     }
-   
-   
+
+    
 
 }

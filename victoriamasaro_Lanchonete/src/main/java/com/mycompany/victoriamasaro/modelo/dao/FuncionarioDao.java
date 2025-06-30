@@ -11,26 +11,28 @@ public class FuncionarioDao extends GenericoDAO<Funcionario> {
     public void salvar(Funcionario objFuncionario) {
         String sql = "INSERT INTO FUNCIONARIO(nome, carTrab, cpf, email, salarioAtual, dataAdmissao, cargo_codCargo) VALUES (?, ?, ?, ?, ?, ?, ?)";
         save(sql,
-             objFuncionario.getNome(),
-             objFuncionario.getCarTrab(),
-             objFuncionario.getCpf(),
-             objFuncionario.getEmail(),
-             objFuncionario.getSalarioAtual(),
-             objFuncionario.getDataAdmissao(),
-             objFuncionario.getCodCargo().getCodCargo());
+            objFuncionario.getNome(),
+            objFuncionario.getCarTrab(),
+            objFuncionario.getCpf(),
+            objFuncionario.getEmail(),
+            objFuncionario.getSalarioAtual(),
+            objFuncionario.getDataAdmissao(),
+            objFuncionario.getObjCargo().getCodCargo()
+        );
     }
 
     public void alterar(Funcionario objFuncionario) {
         String sql = "UPDATE FUNCIONARIO SET nome=?, carTrab=?, cpf=?, email=?, salarioAtual=?, dataAdmissao=?, cargo_codCargo=? WHERE codFuncionario=?";
         save(sql,
-             objFuncionario.getNome(),
-             objFuncionario.getCarTrab(),
-             objFuncionario.getCpf(),
-             objFuncionario.getEmail(),
-             objFuncionario.getSalarioAtual(),
-             objFuncionario.getDataAdmissao(),
-             objFuncionario.getCodCargo().getCodCargo(),
-             objFuncionario.getCodFuncionario());
+            objFuncionario.getNome(),
+            objFuncionario.getCarTrab(),
+            objFuncionario.getCpf(),
+            objFuncionario.getEmail(),
+            objFuncionario.getSalarioAtual(),
+            objFuncionario.getDataAdmissao(),
+            objFuncionario.getObjCargo().getCodCargo(),
+            objFuncionario.getCodFuncionario()
+        );
     }
 
     public void excluir(Funcionario objFuncionario) {
@@ -39,23 +41,20 @@ public class FuncionarioDao extends GenericoDAO<Funcionario> {
     }
 
     private static class FuncionarioRowMapper implements RowMapper<Funcionario> {
-
         CargoDao cargoDao = new CargoDao();
 
         @Override
         public Funcionario mapRow(ResultSet rs) throws SQLException {
-            Funcionario objFuncionario = new Funcionario();
-
-            objFuncionario.setCodFuncionario(rs.getInt("codFuncionario"));
-            objFuncionario.setNome(rs.getString("nome"));
-            objFuncionario.setCarTrab(rs.getString("carTrab"));
-            objFuncionario.setCpf(rs.getString("cpf"));
-            objFuncionario.setEmail(rs.getString("email"));
-            objFuncionario.setSalarioAtual(rs.getDouble("salarioAtual"));
-            objFuncionario.setDataAdmissao(rs.getDate("dataAdmissao"));
-            objFuncionario.setCodCargo(cargoDao.buscarCargoPorID(rs.getInt("cargo_codCargo")));
-
-            return objFuncionario;
+            Funcionario f = new Funcionario();
+            f.setCodFuncionario(rs.getInt("codFuncionario"));
+            f.setNome(rs.getString("nome"));
+            f.setCarTrab(rs.getString("carTrab"));
+            f.setCpf(rs.getString("cpf"));
+            f.setEmail(rs.getString("email"));
+            f.setSalarioAtual(rs.getDouble("salarioAtual"));
+            f.setDataAdmissao(rs.getDate("dataAdmissao"));
+            f.setObjCargo(cargoDao.buscarCargoPorID(rs.getInt("cargo_codCargo")));
+            return f;
         }
     }
 

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:set var="ocultarBoasVindas" value="true"/>
 <%@ include file="menu.jsp" %>
@@ -7,13 +6,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Cadastro Funcionário</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* seu CSS original aqui, exatamente igual ao que você enviou */
-        /* Mesma base do CSS do produto, adaptado para funcionário */
         * {
             margin: 0; padding: 0; border: 0;
             box-sizing: border-box;
@@ -47,7 +44,7 @@
             text-align: center;
             font-weight: 700;
             font-size: 2.2rem;
-            margin: 0 0 15px;
+            margin-bottom: 15px;
             color: #E25822;
             line-height: 1.2;
         }
@@ -73,7 +70,6 @@
             padding-right: 10px;
         }
         input[type="text"],
-        input[type="email"],
         input[type="date"],
         select {
             padding: 8px 10px;
@@ -124,7 +120,7 @@
             text-align: center;
             color: #d9534f;
             font-weight: 700;
-            margin: 0 0 15px;
+            margin-bottom: 15px;
             padding: 10px;
             background-color: #fff3e6;
             border-radius: 4px;
@@ -180,7 +176,6 @@
                 margin-bottom: 5px;
             }
             input[type="text"],
-            input[type="email"],
             input[type="date"],
             select {
                 max-width: 100%;
@@ -192,6 +187,24 @@
     </style>
 
     <script>
+        // Máscara CPF: 000.000.000-00
+        function mascaraCPF(campo) {
+            let v = campo.value;
+            v = v.replace(/\D/g, ""); // Remove tudo que não é dígito
+            v = v.replace(/(\d{3})(\d)/, "$1.$2");
+            v = v.replace(/(\d{3})(\d)/, "$1.$2");
+            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            campo.value = v;
+        }
+
+        // Máscara Carteira de Trabalho: #########-##
+        function mascaraCarTrab(campo) {
+            let v = campo.value;
+            v = v.replace(/\D/g, ""); // Remove tudo que não é dígito
+            v = v.replace(/(\d{9})(\d{1,2})?$/, "$1-$2");
+            campo.value = v;
+        }
+
         function validarNumero(campo) {
             let valor = campo.value;
             let regex = /^[0-9.,]*$/;
@@ -205,41 +218,43 @@
 <div class="page-container">
     <div class="content">
         <h1>Cadastro Funcionário</h1>
+
         <c:if test="${not empty mensagem}">
             <div class="mensagem">${mensagem}</div>
         </c:if>
+
         <form method="post" action="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador">
-            <input type="hidden" name="codFuncionario" value="${codFuncionario}" />
-            <input type="hidden" name="opcao" value="${opcao}" />
+            <input type="hidden" name="codigoFuncionario" value="${codigoFuncionario}">
+            <input type="hidden" name="opcao" value="${opcao}">
 
             <div class="form-group">
                 <label for="nomeFuncionario">Nome:</label>
-                <input type="text" id="nomeFuncionario" name="nomeFuncionario" required maxlength="100" value="${nomeFuncionario}" />
+                <input type="text" id="nomeFuncionario" name="nomeFuncionario" maxlength="100" required value="${nomeFuncionario}">
             </div>
 
             <div class="form-group">
-                <label for="carTrab">Cargo Trabalho:</label>
-                <input type="text" id="carTrab" name="carTrab" required maxlength="100" value="${carTrab}" />
+                <label for="carTrabFuncionario">Cargo de Trabalho:</label>
+                <input type="text" id="carTrabFuncionario" name="carTrabFuncionario" maxlength="12" required value="${carTrabFuncionario}" oninput="mascaraCarTrab(this)">
             </div>
 
             <div class="form-group">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" required maxlength="14" value="${cpf}" />
+                <label for="cpfFuncionario">CPF:</label>
+                <input type="text" id="cpfFuncionario" name="cpfFuncionario" maxlength="14" required value="${cpfFuncionario}" oninput="mascaraCPF(this)">
             </div>
 
             <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required maxlength="150" value="${email}" />
+                <label for="emailFuncionario">E-mail:</label>
+                <input type="text" id="emailFuncionario" name="emailFuncionario" maxlength="100" required value="${emailFuncionario}">
             </div>
 
             <div class="form-group">
-                <label for="salarioAtual">Salário Atual:</label>
-                <input type="text" id="salarioAtual" name="salarioAtual" required maxlength="20" value="${salarioAtual}" oninput="validarNumero(this)" />
+                <label for="salarioAtualFuncionario">Salário Atual:</label>
+                <input type="text" id="salarioAtualFuncionario" name="salarioAtualFuncionario" required value="${salarioAtualFuncionario}" oninput="validarNumero(this)">
             </div>
 
             <div class="form-group">
-                <label for="dataAdmissao">Data Admissão:</label>
-                <input type="date" id="dataAdmissao" name="dataAdmissao" required value="${dataAdmissao}" />
+                <label for="dataAdmissaoFuncionario">Data de Admissão:</label>
+                <input type="date" id="dataAdmissaoFuncionario" name="dataAdmissaoFuncionario" required value="${dataAdmissaoFuncionario}">
             </div>
 
             <div class="form-group">
@@ -253,7 +268,7 @@
             </div>
 
             <div class="form-buttons">
-                <input type="submit" class="btn-salvar" value="Salvar" />
+                <input type="submit" class="btn-salvar" value="Salvar">
                 <a href="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador?opcao=cancelar" class="btn-cancelar">Cancelar</a>
             </div>
         </form>
@@ -262,60 +277,60 @@
             <div class="table-wrapper">
                 <table>
                     <thead>
-                    <tr>
-                        <th>CÓDIGO</th>
-                        <th>NOME</th>
-                        <th>CARGO TRABALHO</th>
-                        <th>CPF</th>
-                        <th>E-MAIL</th>
-                        <th>SALÁRIO ATUAL</th>
-                        <th>DATA ADMISSÃO</th>
-                        <th>CARGO</th>
-                        <th>ALTERAR</th>
-                        <th>EXCLUIR</th>
-                    </tr>
+                        <tr>
+                            <th>CÓDIGO</th>
+                            <th>NOME</th>
+                            <th>CARGO DE TRABALHO</th>
+                            <th>CPF</th>
+                            <th>EMAIL</th>
+                            <th>SALÁRIO</th>
+                            <th>DATA ADMISSÃO</th>
+                            <th>CARGO</th>
+                            <th>EDITAR</th>
+                            <th>EXCLUIR</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="funcionario" items="${listaFuncionario}">
-                        <tr>
-                            <td>${funcionario.codFuncionario}</td>
-                            <td>${funcionario.nome}</td>
-                            <td>${funcionario.carTrab}</td>
-                            <td>${funcionario.cpf}</td>
-                            <td>${funcionario.email}</td>
-                            <td>${funcionario.salarioAtual}</td>
-                            <td><fmt:formatDate value="${funcionario.dataAdmissao}" pattern="dd/MM/yyyy" /></td>
-                            <td>${funcionario.codCargo.nome}</td>
-                            <td>
-                                <form method="post" action="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador" style="display:inline;">
-                                    <input type="hidden" name="codFuncionario" value="${funcionario.codFuncionario}" />
-                                    <input type="hidden" name="nomeFuncionario" value="${funcionario.nome}" />
-                                    <input type="hidden" name="carTrab" value="${funcionario.carTrab}" />
-                                    <input type="hidden" name="cpf" value="${funcionario.cpf}" />
-                                    <input type="hidden" name="email" value="${funcionario.email}" />
-                                    <input type="hidden" name="salarioAtual" value="${funcionario.salarioAtual}" />
-                                    <input type="hidden" name="dataAdmissao" value="${funcionario.dataAdmissao}" />
-                                    <input type="hidden" name="codCargo" value="${funcionario.codCargo.codCargo}" />
-                                    <input type="hidden" name="opcao" value="editar" />
-                                    <button type="submit" class="table-btn">Editar</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador" style="display:inline;">
-                                    <input type="hidden" name="codFuncionario" value="${funcionario.codFuncionario}" />
-                                    <input type="hidden" name="nomeFuncionario" value="${funcionario.nome}" />
-                                    <input type="hidden" name="carTrab" value="${funcionario.carTrab}" />
-                                    <input type="hidden" name="cpf" value="${funcionario.cpf}" />
-                                    <input type="hidden" name="email" value="${funcionario.email}" />
-                                    <input type="hidden" name="salarioAtual" value="${funcionario.salarioAtual}" />
-                                    <input type="hidden" name="dataAdmissao" value="${funcionario.dataAdmissao}" />
-                                    <input type="hidden" name="codCargo" value="${funcionario.codCargo.codCargo}" />
-                                    <input type="hidden" name="opcao" value="excluir" />
-                                    <button type="submit" class="table-btn">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var="func" items="${listaFuncionario}">
+                            <tr>
+                                <td>${func.codFuncionario}</td>
+                                <td>${func.nome}</td>
+                                <td>${func.carTrab}</td>
+                                <td>${func.cpf}</td>
+                                <td>${func.email}</td>
+                                <td>${func.salarioAtual}</td>
+                                <td>${func.dataAdmissao}</td>
+                                <td>${func.objCargo.nome}</td>
+                                <td>
+                                    <form method="post" action="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador" style="display:inline;">
+                                        <input type="hidden" name="codigoFuncionario" value="${func.codFuncionario}">
+                                        <input type="hidden" name="nomeFuncionario" value="${func.nome}">
+                                        <input type="hidden" name="carTrabFuncionario" value="${func.carTrab}">
+                                        <input type="hidden" name="cpfFuncionario" value="${func.cpf}">
+                                        <input type="hidden" name="emailFuncionario" value="${func.email}">
+                                        <input type="hidden" name="salarioAtualFuncionario" value="${func.salarioAtual}">
+                                        <input type="hidden" name="dataAdmissaoFuncionario" value="${func.dataAdmissao}">
+                                        <input type="hidden" name="codCargo" value="${func.objCargo.codCargo}">
+                                        <input type="hidden" name="opcao" value="editar">
+                                        <button type="submit" class="table-btn">Editar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" action="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador" style="display:inline;">
+                                        <input type="hidden" name="codigoFuncionario" value="${func.codFuncionario}">
+                                        <input type="hidden" name="nomeFuncionario" value="${func.nome}">
+                                        <input type="hidden" name="carTrabFuncionario" value="${func.carTrab}">
+                                        <input type="hidden" name="cpfFuncionario" value="${func.cpf}">
+                                        <input type="hidden" name="emailFuncionario" value="${func.email}">
+                                        <input type="hidden" name="salarioAtualFuncionario" value="${func.salarioAtual}">
+                                        <input type="hidden" name="dataAdmissaoFuncionario" value="${func.dataAdmissao}">
+                                        <input type="hidden" name="codCargo" value="${func.objCargo.codCargo}">
+                                        <input type="hidden" name="opcao" value="excluir">
+                                        <button type="submit" class="table-btn">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
