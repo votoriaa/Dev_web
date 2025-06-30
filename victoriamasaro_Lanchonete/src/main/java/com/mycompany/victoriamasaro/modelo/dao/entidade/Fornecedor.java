@@ -11,9 +11,9 @@ package com.mycompany.victoriamasaro.modelo.dao.entidade;
 public class Fornecedor {
     
     private Integer codFornecedor;
-    private String endereco, numeroCasa;
+    private double custo;
     
-    Cliente objCliente;
+    ItensVenda objItemVenda;
 
     public Integer getCodFornecedor() {
         return codFornecedor;
@@ -23,31 +23,21 @@ public class Fornecedor {
         this.codFornecedor = codFornecedor;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public double getCusto() {
+        return custo;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setCusto(double custo) {
+        this.custo = custo;
     }
 
-    public String getNumeroCasa() {
-        return numeroCasa;
+    public ItensVenda getObjItemVenda() {
+        return objItemVenda;
     }
 
-    public void setNumeroCasa(String numeroCasa) {
-        this.numeroCasa = numeroCasa;
+    public void setObjItemVenda(ItensVenda objItemVenda) {
+        this.objItemVenda = objItemVenda;
     }
-
-    public Cliente getObjCliente() {
-        return objCliente;
-    }
-
-    public void setObjCliente(Cliente objCliente) {
-        this.objCliente = objCliente;
-    }
-    
-    
     
     
 }

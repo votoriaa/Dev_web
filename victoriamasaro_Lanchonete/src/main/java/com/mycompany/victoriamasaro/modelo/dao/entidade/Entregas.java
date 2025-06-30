@@ -8,19 +8,19 @@ package com.mycompany.victoriamasaro.modelo.dao.entidade;
  *
  * @author victo
  */
-public class Fornecedor {
+public class Entregas {
     
-    private Integer codFornecedor;
+    private Integer codEntrega;
     private String endereco, numeroCasa;
     
-    Cliente objCliente;
+   Cliente objCliente;
 
-    public Integer getCodFornecedor() {
-        return codFornecedor;
+    public Integer getCodEntrega() {
+        return codEntrega;
     }
 
-    public void setCodFornecedor(Integer codFornecedor) {
-        this.codFornecedor = codFornecedor;
+    public void setCodEntrega(Integer codFornecedor) {
+        this.codEntrega = codFornecedor;
     }
 
     public String getEndereco() {

@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%-- Só define a variável ocultarBoasVindas se houver "opcao" --%>
 <c:if test="${not empty param.opcao}">
     <c:set var="ocultarBoasVindas" value="true" scope="request" />
 </c:if>
@@ -36,7 +35,7 @@
             position: fixed;
             top: 0; left: 50%;
             transform: translateX(-50%);
-            width: 100%;
+            width: 80vw; /* largura alterada para 80% da viewport */
             max-width: 1200px;
             background-color: #E25822;
             box-shadow: 0 3px 8px rgba(0,0,0,0.2);
@@ -79,14 +78,15 @@
             outline: none;
         }
 
-        .menu-bar a::before {
+        /* Ícones diretamente no conteúdo do link, sem precisar do ::before */
+        .menu-bar a[data-icon]::before {
             content: attr(data-icon);
             margin-right: 6px;
             font-size: 1.3rem;
             vertical-align: middle;
         }
 
-   /* Conteúdo da página */
+        /* Conteúdo da página */
         .content {
             padding: 40px 20px;
             text-align: center;
@@ -138,8 +138,10 @@
         <a href="${pageContext.request.contextPath}${URL_BASE}/CargoControlador?opcao=cancelar" data-icon="🛎️">Cargo</a>
         <a href="${pageContext.request.contextPath}${URL_BASE}/ProdutoControlador?opcao=cancelar" data-icon="🍔">Produto</a>
         <a href="${pageContext.request.contextPath}${URL_BASE}/VendaControlador?opcao=cancelar" data-icon="🛒">Venda</a>
-        <a href="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador?opcao=cancelar" data-icon="🍳">Funcionario</a>
-        <a href="${pageContext.request.contextPath}${URL_BASE}/ItensVendaControlador?opcao=cancelar" data-icon="🍳">Itens Vendidos</a>
+        <a href="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador?opcao=cancelar" data-icon="🍳">Funcionário</a>
+        <a href="${pageContext.request.contextPath}${URL_BASE}/ItensVendaControlador?opcao=cancelar" data-icon="📦">Itens Vendidos</a>
+        <a href="${pageContext.request.contextPath}${URL_BASE}/EntregasControlador?opcao=cancelar" data-icon="🚚">Entregas</a>
+        <a href="${pageContext.request.contextPath}${URL_BASE}/FornecedorControlador?opcao=cancelar" data-icon="🏭">Fornecedor</a>
     </nav>
 </div>
 <c:if test="${empty ocultarBoasVindas}">
